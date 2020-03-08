@@ -14,24 +14,30 @@
       
       <style type="text/css">
         #map {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        z-index: -1;
-    }
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            z-index: -1;
+        }
   </style>
   </head>
   <body>
-    <span id="confirmed"></span>
-    <div id="map"></div>
+    <div class="row">
+        <div class="col-md-3 text-center ">
+            Date
+        </div>
+        <div class="col-md-6 offset-md-3" id="map">
+        </div>
+    </div>
+    
     <script> 
     mapboxgl.accessToken = 'pk.eyJ1IjoiZGFzdWxpdCIsImEiOiJjaXQzYmFjYmkwdWQ5MnBwZzEzZnNub2hhIn0.EDJ-lIfX2FnKhPw3nqHcqg';
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/dark-v9',
-        center: [-40, 40],
-        zoom: 1.5,
+        center: [0,0],
+        zoom: 0.5,
         // minZoom: 1.4
     });
     var empty = {
@@ -41,11 +47,15 @@
 
     map.on('load', function() {
 
-        mapboxgl.util.getJSON('transmission_routes.geojson', function(err, resp) {
+        mapboxgl.util.getJSON('transmission_coordinates.json', function(err, resp) {
 
-            console.log("resp", resp)
             // initialize sources as empty
             map.addSource('routes', {
+                'type': 'geojson',
+                'data': empty
+            });
+
+            map.addSource('airplane', {
                 'type': 'geojson',
                 'data': empty
             });
@@ -67,11 +77,11 @@
                         'property': 'td',
                         'type': 'exponential',
                         'stops': [
-                            ['-24', '#ff4e00'],
-                            ['-3', '#eace28'],
-                            ['0', 'rgba(255,255,255,0.5)'],
-                            ['3', '#43aaf7'],
-                            ['24', '#1129d3']
+                            ['-24', 'black'],
+                            ['-3', 'black'],
+                            ['0', 'black'],
+                            ['3', 'red'],
+                            ['24', 'red']
                         ]
                     }
                 }
@@ -92,68 +102,90 @@
                 var counter = Math.floor(100 * (Date.now() - start) / 2000);
                 if (counter > 99) return;
                 if (originArcs.length == 0 || singleArcCoords.length == 0) {
-                    // map.getSource('airplane').setData(empty);
+                    map.getSource('airplane').setData(empty);
                     return;
                 }
+                 map.getSource('airplane').setData({
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: singleArcCoords[counter]
+                    }
+                });
                 requestAnimationFrame(animate);
             };
 
             // reset data and messages to initial state
             function setToEmpty() {
                 map.getSource('routes').setData(empty);
-                // map.getSource('airplane').setData(empty);
+                map.getSource('airplane').setData(empty);
                 map.flyTo({
-                    center: [-40, 40],
+                    center: [0,0],
                     // zoom: 1.5,
-                    speed: .9
+                    // speed: .9
                 });
                 originArcs = [];
             };
 
             // create a series of arcs originating from a searched code
             function setArcs() {
-                setToEmpty();
+                
+                // setToEmpty();
                 singleArcCoords = [];
-                var originLinestrings = resp.features.filter(function(e) {
-                    return e.properties.oc === origin;
+
+                var originLinestrings = resp.filter(function(e) {
+                    // return e.properties.oc === origin;
+                    // console.log("e", e)
+
+                    return e.date === currentDate
                 });
 
+                // console.log("origin", originLinestrings)
                 if (originLinestrings.length == 0) {
-                    // instruction.textContent = 'No airport was found. Try another search!';
                     return;
                 } else {
                     for (i = 0; i < originLinestrings.length; i++) {
                         var current = originLinestrings[i];
-                        var start = { x: current.geometry.coordinates[0][0], y: current.geometry.coordinates[0][1] };
-                        var end = { x: current.geometry.coordinates[1][0], y: current.geometry.coordinates[1][1] };
-                        var generator = new arc.GreatCircle(start, end, {
-                            'oc': current.properties.oc,
-                            'o': current.properties.o,
-                            'td': current.properties.td,
-                            'dc': current.properties.dc,
-                            'd': current.properties.d
-                        });
-                        var line = generator.Arc(100, { offset: 20 });
+                        var start = { x: current.fromCoordinates[0], y: current.fromCoordinates[1] };
+                        var end = { x: current.toCoordinates[0], y: current.toCoordinates[1] };
+
+                        // console.log("start", start)
+                        // console.log("end", end)
+                        var generator = new arc.GreatCircle(start, end);
+                        var line = generator.Arc(200, { offset: 20 });
                         originArcs.push(line.json());
                     };
+
+                    // console.log("originarcs", originArcs);
                     if (originArcs.length == 0) { originArcs.push(originLinestrings[0]); };
                     map.getSource('routes').setData({ 'type': 'FeatureCollection', 'features': originArcs });
-                    // map.flyTo({ center: originArcs[0].geometry.coordinates[0], zoom: 1 });
-                    for (i = 0; i < originArcs.length; i++) {
-                        var currentCode = originArcs[i].properties.dc;
-                        if (destinationCodes.indexOf(currentCode) == -1) {
-                            destinationCodes.push(currentCode);
-                        };
-                    };
+                    // map.flyTo({ center: [originLinestrings[0].fromCoordinates[0],originLinestrings[0].fromCoordinates[1]], zoom: 3 });
+                    
                 };
             };
 
-    
-            // Start with an origin.
-            var INITIAL_ORIGIN = 'CLT';
-            // document.getElementById('origin-filter').value = INITIAL_ORIGIN;
-            origin = INITIAL_ORIGIN;
-            setArcs();
+            // let currentDate = "2020-02-28"
+            // let tomorrow = new Date("2020-02-29");
+            // tomorrow.setDate(tomorrow.getDate() + 1);
+            // console.log("tomorrow", tomorrow.getUTCFullYear(), tomorrow.getUTCMonth()+1, tomorrow.getUTCDate())
+            // setArcs();
+
+            let currentDate = "2020-02-27"
+            let tomorrow ;
+            let intervalVirus = setInterval(function(){ 
+                
+                setArcs()
+
+                tomorrow = new Date(currentDate);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                
+                currentDate = tomorrow.toISOString().slice(0,10);
+                console.log(currentDate)
+                
+                if(currentDate === new Date().toISOString().slice(0,10)){
+                    clearInterval(intervalVirus)
+                }
+            }, 1000);
         });
     });
     
