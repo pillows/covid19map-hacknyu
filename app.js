@@ -4,6 +4,7 @@ var app = express();
 // fs module is file system module used to read data
 var fs = require('fs');
 
+let arrData = [[]];
 var confirmed;
 fs.readFile('./csse_covid_19_time_series/time_series_19-covid-Confirmed.csv', 'utf8', function(err, contents){
     confirmed = contents;
@@ -28,7 +29,7 @@ fs.readFile('./csse_covid_19_time_series/time_series_19-covid-Confirmed.csv', 'u
 
     // Create an array to hold our data. Give the array
     // a default empty first row.
-    var arrData = [[]];
+    
 
     // Create an array to hold our individual pattern
     // matching groups.
@@ -88,6 +89,10 @@ fs.readFile('./csse_covid_19_time_series/time_series_19-covid-Confirmed.csv', 'u
 
     console.log("the result is: ", arrData);
 });
+
+app.get('/', function (req, res) {
+  res.json(arrData);
+})
 
 const port = process.env.PORT || 3000;
 app.listen(port, ()=>console.log(`listening on ${port}`));
