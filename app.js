@@ -83,6 +83,9 @@ fs.readFile('./csse_covid_19_time_series/time_series_19-covid-Confirmed.csv', 'u
         arrData[ arrData.length - 1 ].push( strMatchedValue );
     }
 
+    // var totalConfirmed = document.getElementById('confirmed');
+    // var totalCount;    
+
     console.log("the result is: ", arrData);
 });
 
