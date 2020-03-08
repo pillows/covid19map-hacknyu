@@ -24,7 +24,8 @@
   </head>
   <body>
     <div class="row">
-        <div class="col-md-3 text-center ">
+
+        <div class="col-md-3 text-center" id="transmissions">
             Date
         </div>
         <div class="col-md-6 offset-md-3" id="map">
@@ -44,7 +45,7 @@
         'type': 'FeatureCollection',
         'features': []
     }
-
+    let transmissions = document.getElementById("transmissions")
     map.on('load', function() {
 
         mapboxgl.util.getJSON('transmission_coordinates.json', function(err, resp) {
@@ -126,7 +127,7 @@
                 });
                 originArcs = [];
             };
-
+            
             // create a series of arcs originating from a searched code
             function setArcs() {
                 
@@ -140,20 +141,32 @@
                     return e.date === currentDate
                 });
 
+                let dateText = document.createElement("div");
+                    let dateNode = document.createTextNode(currentDate);
+                    dateText.appendChild(dateNode)  
+                     document.getElementById("transmissions").appendChild(dateText);
+                
                 // console.log("origin", originLinestrings)
                 if (originLinestrings.length == 0) {
                     return;
                 } else {
+                    
                     for (i = 0; i < originLinestrings.length; i++) {
                         var current = originLinestrings[i];
                         var start = { x: current.fromCoordinates[0], y: current.fromCoordinates[1] };
                         var end = { x: current.toCoordinates[0], y: current.toCoordinates[1] };
 
-                        // console.log("start", start)
-                        // console.log("end", end)
                         var generator = new arc.GreatCircle(start, end);
                         var line = generator.Arc(200, { offset: 20 });
                         originArcs.push(line.json());
+
+                        
+
+                        var node = document.createElement("div");                 // Create a <li> node
+                        var textnode = document.createTextNode(`${current.from} => ${current.to}`);         // Create a text node
+                        console.log(`$(current.from) -> $(current.to)`)
+                        node.appendChild(textnode);                              // Append the text to <li>
+                        document.getElementById("transmissions").appendChild(node);     // Append <li> to <ul> with id="myList"
                     };
 
                     // console.log("originarcs", originArcs);
@@ -162,6 +175,8 @@
                     // map.flyTo({ center: [originLinestrings[0].fromCoordinates[0],originLinestrings[0].fromCoordinates[1]], zoom: 3 });
                     
                 };
+
+                
             };
 
             // let currentDate = "2020-02-28"
@@ -170,7 +185,7 @@
             // console.log("tomorrow", tomorrow.getUTCFullYear(), tomorrow.getUTCMonth()+1, tomorrow.getUTCDate())
             // setArcs();
 
-            let currentDate = "2020-02-27"
+            let currentDate = "2020-01-13"
             let tomorrow ;
             let intervalVirus = setInterval(function(){ 
                 
@@ -185,7 +200,9 @@
                 if(currentDate === new Date().toISOString().slice(0,10)){
                     clearInterval(intervalVirus)
                 }
-            }, 1000);
+
+                // transmissions.innerHTML = ''
+            }, 2000);
         });
     });
     
