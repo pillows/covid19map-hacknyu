@@ -12,6 +12,15 @@
       <script src='https://api.mapbox.com/mapbox.js/plugins/arc.js/v0.1.0/arc.js'></script>
       <script src='https://npmcdn.com/@turf/turf@3.5.1/turf.min.js'></script>
       
+      <style type="text/css">
+        #map {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        z-index: -1;
+    }
+  </style>
   </head>
   <body>
     <div id="map"></div>
@@ -19,10 +28,132 @@
     mapboxgl.accessToken = 'pk.eyJ1IjoiZGFzdWxpdCIsImEiOiJjaXQzYmFjYmkwdWQ5MnBwZzEzZnNub2hhIn0.EDJ-lIfX2FnKhPw3nqHcqg';
     var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/light-v9',
+        style: 'mapbox://styles/mapbox/dark-v9',
         center: [-40, 40],
-        // zoom: 1.5,
+        zoom: 1.5,
         // minZoom: 1.4
+    });
+    var empty = {
+        'type': 'FeatureCollection',
+        'features': []
+    }
+
+    map.on('load', function() {
+
+        mapboxgl.util.getJSON('transmission_routes.geojson', function(err, resp) {
+
+            console.log("resp", resp)
+            // initialize sources as empty
+            map.addSource('routes', {
+                'type': 'geojson',
+                'data': empty
+            });
+
+            // add data-driven styled layer for line-color
+            map.addLayer({
+                'id': 'routes',
+                'type': 'line',
+                'source': 'routes',
+                'layout': {
+                    'line-cap': 'round',
+                    'line-join': 'round'
+                },
+                'paint': {
+                    'line-blur': 1,
+                    'line-width': 2,
+                    'line-opacity': 0.8,
+                    'line-color': {
+                        'property': 'td',
+                        'type': 'exponential',
+                        'stops': [
+                            ['-24', '#ff4e00'],
+                            ['-3', '#eace28'],
+                            ['0', 'rgba(255,255,255,0.5)'],
+                            ['3', '#43aaf7'],
+                            ['24', '#1129d3']
+                        ]
+                    }
+                }
+            });
+
+            // initialize empty objects
+            var origin = {};
+            var destination = {};
+
+            // initialize empty arrays
+            var originArcs = [];
+            var originCodes = [];
+            var destinationCodes = [];
+            var singleArcCoords = [];
+
+            var start;
+            function animate() {
+                var counter = Math.floor(100 * (Date.now() - start) / 2000);
+                if (counter > 99) return;
+                if (originArcs.length == 0 || singleArcCoords.length == 0) {
+                    // map.getSource('airplane').setData(empty);
+                    return;
+                }
+                requestAnimationFrame(animate);
+            };
+
+            // reset data and messages to initial state
+            function setToEmpty() {
+                map.getSource('routes').setData(empty);
+                // map.getSource('airplane').setData(empty);
+                map.flyTo({
+                    center: [-40, 40],
+                    // zoom: 1.5,
+                    speed: .9
+                });
+                originArcs = [];
+            };
+
+            // create a series of arcs originating from a searched code
+            function setArcs() {
+                setToEmpty();
+                singleArcCoords = [];
+                var originLinestrings = resp.features.filter(function(e) {
+                    return e.properties.oc === origin;
+                });
+
+                if (originLinestrings.length == 0) {
+                    // instruction.textContent = 'No airport was found. Try another search!';
+                    return;
+                } else {
+                    for (i = 0; i < originLinestrings.length; i++) {
+                        var current = originLinestrings[i];
+                        var start = { x: current.geometry.coordinates[0][0], y: current.geometry.coordinates[0][1] };
+                        var end = { x: current.geometry.coordinates[1][0], y: current.geometry.coordinates[1][1] };
+                        var generator = new arc.GreatCircle(start, end, {
+                            'oc': current.properties.oc,
+                            'o': current.properties.o,
+                            'td': current.properties.td,
+                            'dc': current.properties.dc,
+                            'd': current.properties.d
+                        });
+                        var line = generator.Arc(100, { offset: 20 });
+                        originArcs.push(line.json());
+                    };
+                    if (originArcs.length == 0) { originArcs.push(originLinestrings[0]); };
+                    map.getSource('routes').setData({ 'type': 'FeatureCollection', 'features': originArcs });
+                    // map.flyTo({ center: originArcs[0].geometry.coordinates[0], zoom: 1 });
+                    for (i = 0; i < originArcs.length; i++) {
+                        var currentCode = originArcs[i].properties.dc;
+                        if (destinationCodes.indexOf(currentCode) == -1) {
+                            destinationCodes.push(currentCode);
+                        };
+                    };
+                };
+            };
+
+    
+            // Start with an origin.
+            var INITIAL_ORIGIN = 'CLT';
+            // document.getElementById('origin-filter').value = INITIAL_ORIGIN;
+            origin = INITIAL_ORIGIN;
+            setArcs();
+        });
     });
     
     </script>

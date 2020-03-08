@@ -1,0 +1,718 @@
+{
+    "type":"FeatureCollection",
+    "features":[
+        {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -77.455811,
+            38.944533
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Washington Dulles Intl",
+        "dc": "IAD",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -95.341442,
+            29.984433
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "George Bush Intercontinental",
+        "dc": "IAH",
+        "td": -1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -77.902569,
+            34.270615
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Wilmington Intl",
+        "dc": "ILM",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -86.294383,
+            39.717331
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Indianapolis Intl",
+        "dc": "IND",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -90.075889,
+            32.311167
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Jackson Evers Intl",
+        "dc": "JAN",
+        "td": -1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -81.687861,
+            30.494056
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Jacksonville Intl",
+        "dc": "JAX",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -73.778925,
+            40.639751
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "John F Kennedy Intl",
+        "dc": "JFK",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -115.15225,
+            36.080056
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Mc Carran Intl",
+        "dc": "LAS",
+        "td": -3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -118.408075,
+            33.942536
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Los Angeles Intl",
+        "dc": "LAX",
+        "td": -3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -84.605889,
+            38.0365
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Blue Grass",
+        "dc": "LEX",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -73.872608,
+            40.777245
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "La Guardia",
+        "dc": "LGA",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -0.461389,
+            51.4775
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Heathrow",
+        "dc": "LHR",
+        "td": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -85.544408,
+            10.593289
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Daniel Oduber Quiros Intl",
+        "dc": "LIR",
+        "td": -1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -92.224306,
+            34.729444
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Adams Fld",
+        "dc": "LIT",
+        "td": -1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -79.2004,
+            37.3267
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Lynchburg Regional Preston Glenn Field",
+        "dc": "LYH",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -77.913358,
+            18.503717
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Sangster Intl",
+        "dc": "MBJ",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -94.713905,
+            39.297606
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Kansas City Intl",
+        "dc": "MCI",
+        "td": -1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -81.308994,
+            28.429394
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Orlando Intl",
+        "dc": "MCO",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -76.763403,
+            40.193494
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Harrisburg Intl",
+        "dc": "MDT",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -89.976667,
+            35.042417
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Memphis Intl",
+        "dc": "MEM",
+        "td": -1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -99.072097,
+            19.436303
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Licenciado Benito Juarez Intl",
+        "dc": "MEX",
+        "td": -1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -86.3939722,
+            32.3006389
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Montgomery Regional Airport ",
+        "dc": "MGM",
+        "td": -1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -71.435667,
+            42.932556
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Manchester Regional Airport",
+        "dc": "MHT",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -80.290556,
+            25.79325
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Miami Intl",
+        "dc": "MIA",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -87.896583,
+            42.947222
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "General Mitchell Intl",
+        "dc": "MKE",
+        "td": -1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -80.645258,
+            28.102753
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Melbourne Intl",
+        "dc": "MLB",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -88.242814,
+            30.691231
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Mobile Rgnl",
+        "dc": "MOB",
+        "td": -1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -93.221767,
+            44.881956
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Minneapolis St Paul Intl",
+        "dc": "MSP",
+        "td": -1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -90.258028,
+            29.993389
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Louis Armstrong New Orleans Intl",
+        "dc": "MSY",
+        "td": -1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -78.928333,
+            33.67975
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Myrtle Beach Intl",
+        "dc": "MYR",
+        "td": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -80.943139,
+            35.214
+          ],
+          [
+            -77.466231,
+            25.038958
+          ]
+        ]
+      },
+      "properties": {
+        "o": "Charlotte Douglas Intl",
+        "oc": "CLT",
+        "d": "Lynden Pindling Intl",
+        "dc": "NAS",
+        "td": 0
+      }
+    }
+    ]
+}
