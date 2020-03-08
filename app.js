@@ -1,10 +1,12 @@
-var express = require('express');
-var app = express();
+// var express = require('express');
+// var app = express();
 
 // fs module is file system module used to read data
-var fs = require('fs');
+// var fs = require('fs');
 
-var confirmed;
+var reportsConfirmed = 
+
+// var confirmed = 
 fs.readFile('./csse_covid_19_time_series/time_series_19-covid-Confirmed.csv', 'utf8', function(err, contents){
     confirmed = contents;
     strDelimiter =  ",";
@@ -82,11 +84,22 @@ fs.readFile('./csse_covid_19_time_series/time_series_19-covid-Confirmed.csv', 'u
         // it to the data array.
         arrData[ arrData.length - 1 ].push( strMatchedValue );
     }
-
-    // var totalConfirmed = document.getElementById('confirmed');
-    // var totalCount;    
-
-    console.log("the result is: ", arrData);
+    console.log(arrData.length)
+    console.log("the row size is: ", arrData[1].length);
+    var total = 0;
+    for(var i = 1; i < arrData.length; i++){
+        // console.log(arrData[i])
+        // for (var j = 4; j < arrData[i].length; j++){
+            // console.log("the length it", arrData[i].length)
+            total+=parseInt(arrData[i][49]);
+            // console.log(parseInt(arrData[i][j]));
+        // }
+    }
+    var totalConfirmed = document.getElementById('confirmed');
+    var totalCount = document.createTextNode(total);
+    totalConfirmed.appendChild(totalCount);
+    
+    console.log("the result is: ", total);
 });
 
 const port = process.env.PORT || 3000;
